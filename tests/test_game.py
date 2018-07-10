@@ -13,11 +13,13 @@ class TestGame(unittest.TestCase):
 
     def test_is_valid(self):
         new_game = Game()
-        self.assertFalse(new_game.is_valid("",
-                                           new_game.grid))
-        self.assertFalse(new_game.is_valid("ABCDEFGHI",
-                                           new_game.grid))
-        self.assertFalse(new_game.is_valid("IZIPITAPO",
-                                           new_game.grid))
-        self.assertTrue(new_game.is_valid("MARVELOUS",
-                                          ("AELMORSUV").split()))
+        new_game.grid = list('AELMORSUV')
+        self.assertFalse(new_game.is_valid(""))
+        self.assertFalse(new_game.is_valid("ABCDEFGHI"))
+        self.assertFalse(new_game.is_valid("IZIPITAPO"))
+        self.assertTrue(new_game.is_valid("MARVELOUS"))
+
+    def test_unknown_word_is_invalid(self):
+        new_game = Game()
+        new_game.grid = list('KWIENFUQW') # Force the grid to test
+        self.assertIs(new_game.is_valid('FEUN'), False)
