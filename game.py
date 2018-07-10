@@ -11,7 +11,7 @@ class Game(object):
         for _ in range(9):
             self.grid.append(random.choice(string.ascii_uppercase))
 
-    def is_valid(self, word, grid):
+    def is_valid(self, word):
         if not (len(word) >0 and len(word) <= 9):
             return False
         if word not in EN_DICT:
